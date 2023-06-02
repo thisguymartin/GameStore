@@ -1,3 +1,17 @@
+<!-- /**
+* Defines a .NET web project using the Microsoft.NET.Sdk.Web SDK.
+*
+* @param {string} Sdk - Specifies the SDK to use for the project.
+* @param {object} PropertyGroup - Defines a set of properties for the project.
+* @param {string} TargetFramework - Specifies the target framework for the project.
+* @param {string} Nullable - Enables nullable reference types for the project.
+* @param {string} ImplicitUsings - Enables implicit namespace imports for the project.
+* @param {object} ItemGroup - Defines a set of items for the project.
+* @param {object} PackageReference - Specifies a NuGet package to include in the project.
+* @param {string} Include - Specifies the name of the package to include.
+* @param {string} Version - Specifies the version of the package to include.
+*/ -->
+
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
@@ -5,5 +19,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MinimalApis.Extensions" Version="0.10.1" />
+  </ItemGroup>
 
 </Project>

@@ -5,11 +5,15 @@
 /Users/martinpatino/worspace/GameStore/GameStore.Api/bin/Debug/net7.0/GameStore.Api.runtimeconfig.json
 /Users/martinpatino/worspace/GameStore/GameStore.Api/bin/Debug/net7.0/GameStore.Api.dll
 /Users/martinpatino/worspace/GameStore/GameStore.Api/bin/Debug/net7.0/GameStore.Api.pdb
+/Users/martinpatino/worspace/GameStore/GameStore.Api/bin/Debug/net7.0/Microsoft.OpenApi.dll
+/Users/martinpatino/worspace/GameStore/GameStore.Api/bin/Debug/net7.0/MinimalApis.Extensions.dll
+/Users/martinpatino/worspace/GameStore/GameStore.Api/bin/Debug/net7.0/MiniValidation.dll
 /Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/GameStore.Api.csproj.AssemblyReference.cache
 /Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/GameStore.Api.GeneratedMSBuildEditorConfig.editorconfig
 /Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/GameStore.Api.AssemblyInfoInputs.cache
 /Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/GameStore.Api.AssemblyInfo.cs
 /Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/GameStore.Api.csproj.CoreCompileInputs.cache
+/Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/GameStore.Api.MvcApplicationPartsAssemblyInfo.cs
 /Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/GameStore.Api.MvcApplicationPartsAssemblyInfo.cache
 /Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/staticwebassets/msbuild.GameStore.Api.Microsoft.AspNetCore.StaticWebAssets.props
 /Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/staticwebassets/msbuild.build.GameStore.Api.props
@@ -19,6 +23,7 @@
 /Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/staticwebassets.build.json
 /Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/staticwebassets.development.json
 /Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/scopedcss/bundle/GameStore.Api.styles.css
+/Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/GameStore.Api.csproj.CopyComplete
 /Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/GameStore.Api.dll
 /Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/refint/GameStore.Api.dll
 /Users/martinpatino/worspace/GameStore/GameStore.Api/obj/Debug/net7.0/GameStore.Api.pdb

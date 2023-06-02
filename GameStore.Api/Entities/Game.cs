@@ -1,16 +1,22 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace GameStore.Api.Entities;
 
 public class Game
 {
-  public Guid Id { get; set; } = new Guid(212);
+  public Guid Id { get; set; }
+
+  [Required]
+  [StringLength(100)]
   public required string Name { get; set; }
-
+  [Required]
+  [StringLength(100)]
   public required string Genre { get; set; }
-
-  public required decimal Price { get; set; }
-
+  [Required]
+  [Range(1, 100)]
+  public decimal Price { get; set; }
   public DateTime ReleaseDate { get; set; }
-
-  public required string ImageUrl { get; set; }
-
+  [Url]
+  [StringLength(100)]
+  public required string ImageUri { get; set; }
 }
