@@ -41,7 +41,7 @@ public static class GamesEndpoints
 
         group.MapPatch("/{id}", (Guid id, Game inputGame) =>
         {
-            Game? foundGame = games.Find(g => g.Id == id);
+            Game? foundGame = repo.GetById(id);
 
             if (foundGame == null)
             {
