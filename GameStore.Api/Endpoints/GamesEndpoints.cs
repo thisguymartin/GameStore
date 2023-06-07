@@ -5,72 +5,58 @@ namespace GameStore.Api.Endpoints;
 
 public static class GamesEndpoints
 {
-    const string GetGameEndpointName = "GetGame";
+  const string GetGameEndpointName = "GetGame";
 
+  public static RouteGroupBuilder MapGamesEndpoints(this IEndpointRouteBuilder routes)
+  {
 
+    var group = routes.MapGroup("/games").WithParameterValidation();
 
+    group.MapGet("/", (IGamesRepository repo) => repo.GetAll().Select(game => game.AsDto()));
 
-    public static RouteGroupBuilder MapGamesEndpoints(this IEndpointRouteBuilder routes)
+    group.MapGet("/{id}", (IGamesRepository repo, Guid id) =>
     {
-        InMemoryRepository repo = new();
+      Game? game = repo.Get(id);
 
-        var group = routes.MapGroup("/games").WithParameterValidation();
+      if (game is null)
+      {
+        return Results.NotFound();
+      }
 
-        group.MapGet("/", () => repo.GetAll());
+      return Results.Ok(game.AsDto());
+    })
+    .WithName(GetGameEndpointName);
 
-        group.MapGet("/{id}", (Guid id) =>
-        {
-            Game? game = repo.GetById(id);
+    group.MapPost("/", (IGamesRepository repo, CrateGameDto gameDto) =>
+    {
 
-            if (game is null)
-            {
-                return Results.NotFound();
-            }
+      Game gameCreated = repo.Create(game);
 
-            return Results.Ok(game);
-        })
-        .WithName(GetGameEndpointName);
+      return Results.CreatedAtRoute(GetGameEndpointName, new { id = gameCreated.Id }, gameCreated);
+    });
 
-        group.MapPost("/", (Game game) =>
-        {
+    group.MapPatch("/{id}", (IGamesRepository repo, Guid id, Game inputGame) =>
+    {
+      Game? foundGame = repo.Get(id);
 
-            Game gameCreated = repo.CreateGame(game);
+      if (foundGame == null)
+      {
+        return Results.NotFound();
+      }
 
-            return Results.CreatedAtRoute(GetGameEndpointName, new { id = gameCreated.Id }, gameCreated);
-        });
+      repo.Update(inputGame);
 
-        group.MapPatch("/{id}", (Guid id, Game inputGame) =>
-        {
-            Game? foundGame = repo.GetById(id);
+      return Results.NoContent();
+    });
 
-            if (foundGame == null)
-            {
-                return Results.NotFound();
-            }
+    group.MapDelete("/{id}", (IGamesRepository repo, Guid id) =>
+    {
 
-            foundGame.Name = inputGame.Name;
-            foundGame.ImageUri = inputGame.ImageUri;
-            foundGame.Price = inputGame.Price;
-            foundGame.ReleaseDate = inputGame.ReleaseDate;
-            foundGame.Genre = inputGame.Genre;
+      repo.Delete(id);
 
+      return Results.NoContent();
+    });
 
-            return Results.NoContent();
-        });
-
-        group.MapDelete("/{id}", (Guid id) =>
-        {
-            int gameIndex = games.FindIndex(a => a.Id == id);
-            if (gameIndex == -1)
-            {
-                return Results.NotFound();
-            }
-
-            games.RemoveAt(gameIndex);
-
-            return Results.NoContent();
-        });
-
-        return group;
-    }
+    return group;
+  }
 }
