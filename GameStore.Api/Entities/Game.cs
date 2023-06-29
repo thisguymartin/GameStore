@@ -7,10 +7,10 @@ public class Game
   public Guid Id { get; set; }
 
   [Required]
-  [StringLength(100)]
+  [StringLength(50)]
   public required string Name { get; set; }
   [Required]
-  [StringLength(100)]
+  [StringLength(50)]
   public required string Genre { get; set; }
   [Required]
   [Range(1, 100)]
