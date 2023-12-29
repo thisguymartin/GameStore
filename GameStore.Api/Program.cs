@@ -1,7 +1,5 @@
 using GameStore.Api.Entities;
 
-
-
 List<Game> games = new(){
     new Game {
         Id = 1,
@@ -48,19 +46,21 @@ List<Game> games = new(){
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
+const string GetGameEndPointName = "GetGame";
 
-// app.MapGet("/games", () => games);
 
-// app.MapGet("/games/{id}", (int id) =>
-// {
-//     Game? game = games.Find(g => g.Id == id);
-//     if (game == null)
-//     {
-//         return Results.NotFound();
-//     }
+app.MapGet("/games", () => games);
 
-//     return Results.Ok(game);
-// });
+app.MapGet("/games/{id}", (int id) =>
+{
+    Game? game = games.Find(g => g.Id == id);
+    if (game == null)
+    {
+        return Results.NotFound();
+    }
+
+    return Results.Ok(game);
+}).WithName(GetGameEndPointName);
 
 
 app.MapPost("/games", (Game game) =>
@@ -68,8 +68,24 @@ app.MapPost("/games", (Game game) =>
     game.Id = games.Max(game => game.Id) + 1;
     games.Add(game);
 
-    return Results.Ok<Game>(game);
+    return Results.CreatedAtRoute(GetGameEndPointName, new { id = game.Id }, game);
+});
 
+app.MapPut("/games/{id}", (int id, Game game) =>
+{
+    Game? gameFound = games.Find(g => g.Id == id);
+    if (gameFound is null)
+    {
+        return Results.NotFound();
+    }
+
+    gameFound.ImageUrl = game.ImageUrl;
+    gameFound.Name = game.Name;
+    gameFound.Description = game.Description;
+    gameFound.Price = game.Price;
+    gameFound.ReleaseDate = game.ReleaseDate;
+
+    return Results.NoContent();
 });
 
 app.Run();
