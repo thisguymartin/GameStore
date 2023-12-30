@@ -48,10 +48,11 @@ var app = builder.Build();
 
 const string GetGameEndPointName = "GetGame";
 
+var group = app.MapGroup("/games").WithParameterValidation();
 
-app.MapGet("/games", () => games);
+group.MapGet("/", () => games);
 
-app.MapGet("/games/{id}", (int id) =>
+group.MapGet("/{id}", (int id) =>
 {
     Game? game = games.Find(g => g.Id == id);
     if (game == null)
@@ -63,7 +64,7 @@ app.MapGet("/games/{id}", (int id) =>
 }).WithName(GetGameEndPointName);
 
 
-app.MapPost("/games", (Game game) =>
+group.MapPost("/", (Game game) =>
 {
     game.Id = games.Max(game => game.Id) + 1;
     games.Add(game);
@@ -71,7 +72,7 @@ app.MapPost("/games", (Game game) =>
     return Results.CreatedAtRoute(GetGameEndPointName, new { id = game.Id }, game);
 });
 
-app.MapPut("/games/{id}", (int id, Game game) =>
+group.MapPut("/{id}", (int id, Game game) =>
 {
     Game? gameFound = games.Find(g => g.Id == id);
     if (gameFound is null)
@@ -88,7 +89,7 @@ app.MapPut("/games/{id}", (int id, Game game) =>
     return Results.NoContent();
 });
 
-app.MapDelete("/games/{id}", (int id) =>
+group.MapDelete("/{id}", (int id) =>
 {
     Game? gameFound = games.Find(g => g.Id == id);
     if (gameFound is null)
